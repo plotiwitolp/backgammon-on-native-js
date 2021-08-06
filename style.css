@@ -27,6 +27,30 @@ body{
     position: relative;
     border-radius: 5px;
 }
+div#leftSide::before{
+    content: "";
+    border: calc(1.9vw/4) double #433f3773;
+    position: absolute;
+    top: calc(50% - (1.9vw));
+    left: calc(25% - (1.9vw));
+    width: calc(1.9vw*2);
+    height: calc(1.9vw*2);
+    transform: scaleY(3.5) rotate(
+            45deg
+    );
+}
+div#rightSide::before {
+    content: "";
+    border: calc(1.9vw/4) double #433f3773;
+    position: absolute;
+    top: calc(50% - (1.9vw));
+    right: calc(25% - (1.9vw));
+    width: calc(1.9vw*2);
+    height: calc(1.9vw*2);
+    transform: scaleY(3.5) rotate(
+            45deg
+    );
+}
 #leftSide, #rightSide{
     border: calc(1.9vw/2) solid #000000a1;
     display: grid;
@@ -45,7 +69,9 @@ body{
 }
 #leftBottomSide, #rightBottomSide{
     align-self: self-end;
-    /*transform: rotate(180deg);*/
+    transform: rotate(
+            180deg
+    );
 }
 #controlPlayer1, #controlPlayer2{
     padding: 19px;
@@ -56,24 +82,22 @@ body{
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     border-top: 1px solid #878b8f;
     border-bottom: none;
-    /*background: #f0f8ff;*/
 }
 .cellBottom{
     width: 1.9vw;
     height: calc(1.9vw/2);
-    border-radius: 0% 0% 50% 50% / 0% 0% 100% 100%;
-    border-bottom: 1px solid #878b8f;
-    /*background: #f0f8ff;*/
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    border-top: 1px solid #878b8f;
 }
-.blackChecker, .whiteChecker, #testChecker{
+.blackChecker, .whiteChecker, .testChecker{
     display: inline-block;
     width: 1.9vw;
     height: 1.9vw;
     border-radius: 50%;
     box-shadow: 2px 3px 3px #000;
-    cursor: pointer;
+    cursor: all-scroll;
 }
-.blackChecker, #testChecker{
+.blackChecker, .testChecker{
     background: radial-gradient(circle, rgb(130 130 130) 10%, rgb(0 0 0) 83%, rgb(95 95 95) 95%);
     border: 1px solid #969696;
 }
@@ -81,9 +105,23 @@ body{
     background: radial-gradient(circle, rgb(204 204 204) 10%, rgb(255 255 255) 83%, rgb(255 255 255) 95%);
     border: 1px solid #969696;
 }
-#testChecker{
+.testCheckerWrapper {
+    width: 1.9vw;
+    height: 1.9vw;
+    z-index: 0;
+    position: absolute;
+}
+.testChecker{
     position: absolute;
     top:0;
     left: 0;
-    cursor: pointer;
+    cursor: all-scroll;
+}
+.hide{
+    display: none;
+}
+.hovered{
+    background-color: rgba(51, 253, 51, 0.54);
+    box-shadow: 0 0 5px 7px rgba(51, 253, 51, 0.54);
+    z-index: 999;
 }

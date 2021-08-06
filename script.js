@@ -1,41 +1,78 @@
-const testChecker = document.getElementById('testChecker');
-const canvas = document.getElementById('canvas');
+const dragAndDrop = () => {
+    const whiteCheckers = document.querySelectorAll(".whiteChecker");
+    const blackCheckers = document.querySelectorAll(".blackChecker");
+    const cellsTop = document.querySelectorAll('.cellTop')
+    const cellsBottom = document.querySelectorAll('.cellBottom')
+    let checker = null;
+    const cellsTopArr = []
+    const cellsBottomArr = []
 
-testChecker.onmousedown = (e) =>{
-    testChecker.style.position = 'absolute';
-    moveAt(e);
-    document.body.appendChild(testChecker);
+    cellsTop.forEach((cell) => {
+        cellsTopArr.push(cell)
+    })
+    cellsBottom.forEach((cell) => {
+        cellsBottomArr.push(cell)
+    })
 
-    testChecker.style.zIndex = 1000;
+    const cells = cellsTopArr.concat(cellsBottomArr)
+    console.log(cells)
 
-    function moveAt(e) {
-        console.log(e.pageX - testChecker.offsetWidth / 2 + 'px', e.pageY - testChecker.offsetWidth / 2 + 'px')
-        testChecker.style.left = e.pageX - testChecker.offsetWidth / 2 + 'px';
-        testChecker.style.top = e.pageY - testChecker.offsetWidth / 2 + 'px';
+    const dragStart = function (ev) {
+        setTimeout(() => {
+            checker = ev.target;
+            ev.target.classList.add('hide')
+        }, 0)
     }
-    canvas.onmousemove = function(e) {
-        moveAt(e);
-    }
-    testChecker.onmouseup = function() {
-        canvas.onmousemove = null;
-        testChecker.onmouseup = null;
-    }
-    testChecker.ondragstart = function() {
-        return false;
-    };
-    function getCoords(elem) { // кроме IE8-
-        var box = elem.getBoundingClientRect();
 
-        return {
-            top: box.top + pageYOffset,
-            left: box.left + pageXOffset
-        };
+    const dragEnd = function (ev) {
+        ev.target.classList.remove('hide')
+    }
+    const dragOver = function (ev) {
+        ev.preventDefault()
 
     }
-    shiftX = e.pageX - getCoords(testChecker).left;
-    shiftY = e.pageY - getCoords(testChecker).top;
+    const dragEnter = function (ev) {
+        ev.preventDefault()
+        this.classList.add('hovered');
+    }
+    const dragLeave = function () {
+        this.classList.remove('hovered');
+    }
+    const dragDrop = function () {
+        this.append(checker)
+        this.classList.remove('hovered');
+    }
 
-    testChecker.style.left = e.pageX - shiftX + 'px';
-    testChecker.style.top = e.pageY - shiftY + 'px';
+    cells.forEach((cell) => {
+        cell.addEventListener('dragover', dragOver)
+        cell.addEventListener('dragenter', dragEnter)
+        cell.addEventListener('dragleave', dragLeave)
+        cell.addEventListener('drop', dragDrop)
+    })
 
+    blackCheckers.forEach((checker) => {
+            checker.addEventListener('dragstart', dragStart);
+            checker.addEventListener('dragend', dragEnd)
+        }
+    )
+    whiteCheckers.forEach((checker) => {
+            checker.addEventListener('dragstart', dragStart);
+            checker.addEventListener('dragend', dragEnd)
+        }
+    )
+
+
+    const start=()=>{
+        whiteCheckers.forEach((checker)=>{
+            cells[11].append(checker)
+        });
+        blackCheckers.forEach((checker)=>{
+            cells[17].append(checker)
+        });
+    }
+    start()
 }
+
+
+
+dragAndDrop()
