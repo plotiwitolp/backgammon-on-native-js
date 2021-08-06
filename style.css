@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #777;
+}
+#wrapperCanvas{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 70%;
+    margin: 3px auto;
+    border-radius: 10px;
+    background-color: #464646;
+    overflow: hidden;
+    box-shadow: 0px 0px 7px #000;
+}
+#canvas{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: calc(1.9vw*15);
+    height: calc(1.9vw*23);
+    border: calc(1.9vw*0.5) solid #b7ab96;
+    box-shadow: 0px 0px 7px #000;
+    z-index: 2;
+    position: relative;
+    border-radius: 5px;
+}
+#leftSide, #rightSide{
+    border: calc(1.9vw/2) solid #000000a1;
+    display: grid;
+}
+#leftTopSide, #rightTopSide{
+    align-self: self-start;
+}
+
+#leftTopSide, #leftBottomSide, #rightTopSide, #rightBottomSide{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    background-color: #545454;
+}
+#canvas, .cellBottom, .cellTop{
+    background: #b7ab96;
+}
+#leftBottomSide, #rightBottomSide{
+    align-self: self-end;
+    /*transform: rotate(180deg);*/
+}
+#controlPlayer1, #controlPlayer2{
+    padding: 19px;
+}
+.cellTop{
+    width: 1.9vw;
+    height: calc(1.9vw/2);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    border-top: 1px solid #878b8f;
+    border-bottom: none;
+    /*background: #f0f8ff;*/
+}
+.cellBottom{
+    width: 1.9vw;
+    height: calc(1.9vw/2);
+    border-radius: 0% 0% 50% 50% / 0% 0% 100% 100%;
+    border-bottom: 1px solid #878b8f;
+    /*background: #f0f8ff;*/
+}
+.blackChecker, .whiteChecker, #testChecker{
+    display: inline-block;
+    width: 1.9vw;
+    height: 1.9vw;
+    border-radius: 50%;
+    box-shadow: 2px 3px 3px #000;
+    cursor: pointer;
+}
+.blackChecker, #testChecker{
+    background: radial-gradient(circle, rgb(130 130 130) 10%, rgb(0 0 0) 83%, rgb(95 95 95) 95%);
+    border: 1px solid #969696;
+}
+.whiteChecker{
+    background: radial-gradient(circle, rgb(204 204 204) 10%, rgb(255 255 255) 83%, rgb(255 255 255) 95%);
+    border: 1px solid #969696;
+}
+#testChecker{
+    position: absolute;
+    top:0;
+    left: 0;
+    cursor: pointer;
+}
