@@ -36,10 +36,35 @@ const dragAndDrop = () => {
         this.classList.remove('hovered');
     }
     const dragDrop = function () {
-        this.append(checker)
+
+
+        const getType = (el, isCell) => {
+            const elType = isCell ? el.childNodes[0] && el.childNodes[0].className : el.className;
+            const elArr = elType && elType.split(' ')
+            if (Array.isArray(elArr)) {
+                 return elArr.find((el) => {
+                    if (el === 'blackChecker' || el === 'whiteChecker') return el;
+                })
+            }
+            else return elType;
+        }
+
+
+        const cellClass = getType(this, true);
+        const checkerClass = getType(checker)
+
+        if (!cellClass ||cellClass === checkerClass) {
+            this.append(checker)
+        }
+
+
         this.classList.remove('hovered');
+
+
     }
     cells.forEach((cell) => {
+
+
         cell.addEventListener('dragover', dragOver)
         cell.addEventListener('dragenter', dragEnter)
         cell.addEventListener('dragleave', dragLeave)
@@ -55,11 +80,12 @@ const dragAndDrop = () => {
             checker.addEventListener('dragend', dragEnd)
         }
     )
-    const start=()=>{
-        whiteCheckers.forEach((checker)=>{
+    const start = () => {
+
+        whiteCheckers.forEach((checker) => {
             cells[11].append(checker)
         });
-        blackCheckers.forEach((checker)=>{
+        blackCheckers.forEach((checker) => {
             cells[17].append(checker)
         });
     }
