@@ -36,35 +36,24 @@ const dragAndDrop = () => {
         this.classList.remove('hovered');
     }
     const dragDrop = function () {
-
-
         const getType = (el, isCell) => {
             const elType = isCell ? el.childNodes[0] && el.childNodes[0].className : el.className;
             const elArr = elType && elType.split(' ')
             if (Array.isArray(elArr)) {
-                 return elArr.find((el) => {
+                return elArr.find((el) => {
                     if (el === 'blackChecker' || el === 'whiteChecker') return el;
                 })
-            }
-            else return elType;
+            } else return elType;
         }
-
-
         const cellClass = getType(this, true);
         const checkerClass = getType(checker)
 
-        if (!cellClass ||cellClass === checkerClass) {
+        if (!cellClass || cellClass === checkerClass) {
             this.append(checker)
         }
-
-
         this.classList.remove('hovered');
-
-
     }
     cells.forEach((cell) => {
-
-
         cell.addEventListener('dragover', dragOver)
         cell.addEventListener('dragenter', dragEnter)
         cell.addEventListener('dragleave', dragLeave)
@@ -91,5 +80,46 @@ const dragAndDrop = () => {
     }
     start()
 }
-
 dragAndDrop()
+
+const dicesPlaceLeft = document.querySelector("#dicesPlaceLeft")
+const dicesPlaceRight = document.querySelector("#dicesPlaceRight")
+const changePlayerBtn = document.querySelector("#changePlayerBtn")
+const changeText = document.querySelector(".changeText")
+
+const dicesRoll = () => {
+    const showRandomNum = () => {
+        return Math.floor(Math.random() * 6 + 1)
+    }
+    let dice1 = showRandomNum()
+    let dice2 = showRandomNum()
+
+    return `<div><div class='dice'>${dice1}</div><div class='dice'>${dice2}</div></div>`
+}
+
+if (!changeText.innerHTML) {
+    changeText.innerHTML = 'START GAME'
+}
+
+changePlayerBtn.addEventListener('click', () => {
+    if (!dicesPlaceLeft.innerHTML) {
+        dicesPlaceLeft.innerHTML += dicesRoll()
+        dicesPlaceRight.innerHTML = ''
+    } else {
+        dicesPlaceRight.innerHTML += dicesRoll()
+        dicesPlaceLeft.innerHTML = ''
+    }
+
+    if (dicesPlaceLeft.innerHTML) {
+        changeText.innerHTML = `change to white`
+    } else {
+        changeText.innerHTML = `change to black`
+    }
+
+})
+
+
+
+
+
+
