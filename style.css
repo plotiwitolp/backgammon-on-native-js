@@ -173,3 +173,6 @@ div#dicesPlaceLeft, div#dicesPlaceRight {
     height: 100%;
     justify-content: space-around;
 }
+.addedCell {
+    height: calc(1.9vw*2);
+}
