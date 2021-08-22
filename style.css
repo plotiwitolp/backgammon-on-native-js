@@ -113,7 +113,7 @@ div#rightSide::before {
 }
 .cellTop{
     width: 1.9vw;
-    height: calc(1.9vw);
+    height: calc(1.9vw/2);
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     border-top: 1px solid #878b8f;
     border-bottom: none;
@@ -121,7 +121,7 @@ div#rightSide::before {
 }
 .cellBottom{
     width: 1.9vw;
-    height: calc(1.9vw);
+    height:calc(1.9vw/2);
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     border-top: 1px solid #878b8f;
     transition: .2s;
